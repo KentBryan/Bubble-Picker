@@ -82,9 +82,18 @@ object Engine {
     }
 
     fun clear() {
-        borders.forEach { world.destroyBody(it.itemBody) }
-        bodies.forEach { world.destroyBody(it.physicalBody) }
-        borders.clear()
+//         borders.forEach { world.destroyBody(it.itemBody) }
+//         bodies.forEach { world.destroyBody(it.physicalBody) }
+//         borders.clear()
+//         bodies.clear()
+        world = World(Vec2(0f, 0f), false) 
+        borders.forEach { 
+            if(world.isLocked) world.destroyBody(it.itemBody) 
+        } 
+        bodies.forEach { 
+            if(world.isLocked)world.destroyBody(it.physicalBody) 
+        } 
+        borders.clear() 
         bodies.clear()
     }
 
